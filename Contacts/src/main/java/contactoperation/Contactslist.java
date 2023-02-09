@@ -16,7 +16,7 @@ class Contacts{
 		this.phoneno=phoneno;
 	}
 }
-class operation{
+class Operation{
 	static PrintStream out=new PrintStream(new FileOutputStream(FileDescriptor.out));
 	  Contacts head=null;
 	  void insertcontact()
@@ -87,7 +87,7 @@ class operation{
 		Contacts temp=this.head;
 		if(this.head==null)
 		{
-			out.print("Contact list is empty!!\n");
+			display(2);
 		}
 		else {
 					while(temp!=null)
@@ -105,7 +105,7 @@ class operation{
 		Contacts  address=this.head;
 		if(this.head==null)
 		{
-			out.print("Contact list is empty!!\n");
+			display(2);
 		}
 		else {
 						while(temp!=null)
@@ -136,17 +136,21 @@ class operation{
 		Contacts temp=this.head;
 	    if(this.head==null)
 	    {
-	    	out.print("Contact list is empty!!\n");
+	    	display(2);
 	    }
 	    else {
 	    	while(temp!=null)
 			{	
-				if(temp.phoneno.equals(phoneno))break;
+				if(temp.phoneno.equals(phoneno)) {
+					break;
+				}
+				else {
 			    temp=temp.next;
+				}
 			}
 	    	if(temp==null)
 	    	{
-	    		out.print("Oops your Contact is not found in the list");
+	    	          display(1);
 	    	}
 	    	else {
 				    	out.print("Your details\n");
@@ -155,13 +159,24 @@ class operation{
 	    	}
 	    }
 	}
+	void display(int ch)
+	{
+		if(ch==1)
+		{
+			out.print("Oops your Contact is not found in the list");
+		}
+		if(ch==2)
+		{
+			out.print("Contact list is empty!!\n");
+		}
+	}
 }
 public class Contactslist {
 	static PrintStream out=new PrintStream(new FileOutputStream(FileDescriptor.out));
 	private static Scanner p;
 	public static void main(String[] args) {
 		p = new Scanner(System.in);
-		operation a1=new operation();
+		Operation a1=new Operation();
 		int choice;
 	      while(true)
 	      {
@@ -172,6 +187,7 @@ public class Contactslist {
 	    	  case 0:
 	    	  {
 	    		  System.exit(0);
+	    		  break;
 	    	  }
 	    	  case 1:
 	    	  {
